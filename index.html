@@ -278,8 +278,6 @@ snaptr('track', 'PAGE_VIEW');
 
 <script>
 document.getElementById('contact-form').addEventListener('submit', function(event) {
-  // 1. منع الإرسال التلقائي تماماً في البداية لكي نقوم بالفحص أولاً عند الضغط
-  event.preventDefault();
   
   let isValid = true;
   let firstInvalidField = null;
@@ -294,7 +292,7 @@ document.getElementById('contact-form').addEventListener('submit', function(even
   const errorPhone = document.getElementById('error-phone');
   const errorEmail = document.getElementById('error-email');
 
-  // تنظيف وإعادة تصفير الحقول قبل الفحص الجديد
+  // تنظيف الحقول وإعادة التصفير قبل الفحص
   nameField.classList.remove('border-red-500');
   phoneField.classList.remove('border-red-500');
   emailField.classList.remove('border-red-500');
@@ -302,7 +300,7 @@ document.getElementById('contact-form').addEventListener('submit', function(even
   errorPhone.classList.add('hidden');
   errorEmail.classList.add('hidden');
 
-  // فحص حقل الاسم
+  // 1. فحص حقل الاسم
   if (nameField.value.trim() === '') {
     errorName.classList.remove('hidden');
     nameField.classList.add('border-red-500');
@@ -310,7 +308,7 @@ document.getElementById('contact-form').addEventListener('submit', function(even
     if (!firstInvalidField) firstInvalidField = nameField;
   }
 
-  // فحص حقل رقم الهاتف
+  // 2. فحص حقل رقم الهاتف
   if (phoneField.value.trim() === '') {
     errorPhone.classList.remove('hidden');
     phoneField.classList.add('border-red-500');
@@ -318,7 +316,7 @@ document.getElementById('contact-form').addEventListener('submit', function(even
     if (!firstInvalidField) firstInvalidField = phoneField;
   }
 
-  // فحص حقل الإيميل (التأكد من أنه غير فارغ ويحتوي على @)
+  // 3. فحص حقل الإيميل
   if (emailField.value.trim() === '' || !emailField.value.includes('@')) {
     errorEmail.classList.remove('hidden');
     emailField.classList.add('border-red-500');
@@ -326,17 +324,20 @@ document.getElementById('contact-form').addEventListener('submit', function(even
     if (!firstInvalidField) firstInvalidField = emailField;
   }
 
-  // النتيجة النهائية:
-  if (isValid) {
-    // إذا كانت الحقول الثلاثة ممتلئة بشكل صحيح، يتم تمرير الإرسال هنا بأمان وبدون رسائل تنبيهية مزعجة
-    this.submit(); 
-  } else {
-    // إذا وجد حقل فارغ، نأخذ العميل إليه فوراً
+  // النتيجة والتحكم بالإرسال:
+  if (!isValid) {
+    // إيقاف الإرسال فقط في حال وجود حقول إلزامية فارغة
+    event.preventDefault();
+    
+    // توجيه العميل لأول حقل فارغ تلقائياً
     firstInvalidField.focus();
     firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
+  
+  // ملاحظة: إذا كانت isValid تساوي true، لن يتم تنفيذ شيء هنا، 
+  // وسيقوم المتصفح بإرسال الفورم بطريقته الطبيعية والآمنة دون أخطاء أو تكرار.
 });
-              </script>
+</script>
         
 
 
