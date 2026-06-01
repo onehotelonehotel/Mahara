@@ -155,14 +155,20 @@ snaptr('track', 'PAGE_VIEW');
 <label class="block text-[11px] font-bold text-slate-600 uppercase tracking-wider">رقم الجوال</label>
 <div class="flex gap-2">
 <div class="relative w-32 shrink-0">
-<select name="country_code" class="w-full h-10 pr-2 pl-8 text-xs bg-slate-50 border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] appearance-none transition-all outline-none cursor-pointer" dir="ltr">
-<option value="+966">🇸🇦 +966</option>
-<option value="+971">🇦🇪 +971</option>
-<option value="+965">🇰🇼 +965</option>
-<option value="+968">🇴🇲 +968</option>
-<option value="+974">🇶🇦 +974</option>
-<option value="+973">🇧🇭 +973</option>
+<select name="country_code" required class="w-full h-10 pr-2 pl-8 text-xs bg-slate-50 border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] appearance-none transition-all outline-none cursor-pointer" dir="ltr">
+  <!-- خيار افتراضي فارغ يجبر العميل على الاختيار -->
+  <option value="" disabled selected hidden>اختر كود الدولة...</option>
+  
+  <option value="+966">السعودية +966</option>
+  <option value="+971">الإمارات +971</option>
+  <option value="+965">الكويت +965</option>
+  <option value="+968">عُمان +968</option>
+  <option value="+974">قطر +974</option>
+  <option value="+973">البحرين +973</option>
+  <option value="+964">العراق +964</option>
+  <option value="+961">لبنان +961</option>
 </select>
+
 <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-base">expand_more</span>
 </div>
 <input name="phone" class="flex-1 h-10 px-4 text-sm bg-slate-50 border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] text-right transition-all outline-none" dir="ltr" placeholder="500000000" type="tel"/>
