@@ -145,7 +145,9 @@ snaptr('track', 'PAGE_VIEW');
 <p class="text-slate-500 text-sm font-medium">الرجاء إدخال البيانات الرسمية ليتم التواصل معكم من قبل القسم المختص</p>
 </div>
 
-        <form id="contact-form" class="p-8 md:p-10 space-y-8" novalidate>
+
+        
+<form id="contact-form" class="p-8 md:p-10 space-y-8" novalidate>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     
     <div class="space-y-2 flex flex-col">
@@ -159,7 +161,7 @@ snaptr('track', 'PAGE_VIEW');
       <div class="flex gap-2">
         <div class="relative w-32 shrink-0">
           <select name="country_code" id="field-country" class="appearance-none w-full h-10 pr-2 pl-8 text-xs bg-slate-50 border border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] transition-all outline-none cursor-pointer" dir="ltr">
-            <option value="" disabled  hidden>اختر الكود...</option>
+            <option value="" disabled hidden>اختر الكود...</option>
             <option value="+966" selected>السعودية +966</option>
             <option value="+971">الإمارات +971</option>
             <option value="+965">الكويت +965</option>
@@ -276,66 +278,66 @@ snaptr('track', 'PAGE_VIEW');
 
 <script>
 document.getElementById('contact-form').addEventListener('submit', function(event) {
-  // إلغاء إرسال الفورم الافتراضي حتى ننتهي من الفحص
+  // 1. منع الإرسال التلقائي تماماً في البداية لكي نقوم بالفحص أولاً عند الضغط
   event.preventDefault();
   
-  // تصفير وإخفاء كل رسائل الخطأ السابقة وإعادة لون الحدود الطبيعي
-  const errors = ['name', 'phone', 'email'];
-  errors.forEach(id => {
-    document.getElementById(`error-${id}`).classList.add('hidden');
-    const field = document.getElementById(`field-${id}`);
-    if(field) field.classList.remove('border-red-500');
-  });
-  document.getElementById('field-country').classList.remove('border-red-500');
-
-  // جلب قيم الحقول الإلزامية
-  const nameValue = document.getElementById('field-name').value.trim();
-  const countryValue = document.getElementById('field-country').value;
-  const phoneValue = document.getElementById('field-phone').value.trim();
-  const emailValue = document.getElementById('field-email').value.trim();
-
   let isValid = true;
   let firstInvalidField = null;
 
-  // 1. فحص حقل الاسم
-  if (nameValue === '') {
-    document.getElementById('error-name').classList.remove('hidden');
-    document.getElementById('field-name').classList.add('border-red-500');
+  // الحقول المستهدفة بالفحص
+  const nameField = document.getElementById('field-name');
+  const phoneField = document.getElementById('field-phone');
+  const emailField = document.getElementById('field-email');
+
+  // رسائل الخطأ المستهدفة
+  const errorName = document.getElementById('error-name');
+  const errorPhone = document.getElementById('error-phone');
+  const errorEmail = document.getElementById('error-email');
+
+  // تنظيف وإعادة تصفير الحقول قبل الفحص الجديد
+  nameField.classList.remove('border-red-500');
+  phoneField.classList.remove('border-red-500');
+  emailField.classList.remove('border-red-500');
+  errorName.classList.add('hidden');
+  errorPhone.classList.add('hidden');
+  errorEmail.classList.add('hidden');
+
+  // فحص حقل الاسم
+  if (nameField.value.trim() === '') {
+    errorName.classList.remove('hidden');
+    nameField.classList.add('border-red-500');
     isValid = false;
-    if (!firstInvalidField) firstInvalidField = document.getElementById('field-name');
+    if (!firstInvalidField) firstInvalidField = nameField;
   }
 
-  // 2. فحص كود الدولة ورقم الجوال معاً
-  if (countryValue === '' || phoneValue === '') {
-    document.getElementById('error-phone').classList.remove('hidden');
-    document.getElementById('field-phone').classList.add('border-red-500');
-    document.getElementById('field-country').classList.add('border-red-500');
+  // فحص حقل رقم الهاتف
+  if (phoneField.value.trim() === '') {
+    errorPhone.classList.remove('hidden');
+    phoneField.classList.add('border-red-500');
     isValid = false;
-    if (!firstInvalidField) firstInvalidField = document.getElementById('field-phone');
+    if (!firstInvalidField) firstInvalidField = phoneField;
   }
 
-  // 3. فحص حقل البريد الإلكتروني
-  if (emailValue === '' || !emailValue.includes('@')) {
-    document.getElementById('error-email').classList.remove('hidden');
-    document.getElementById('field-email').classList.add('border-red-500');
+  // فحص حقل الإيميل (التأكد من أنه غير فارغ ويحتوي على @)
+  if (emailField.value.trim() === '' || !emailField.value.includes('@')) {
+    errorEmail.classList.remove('hidden');
+    emailField.classList.add('border-red-500');
     isValid = false;
-    if (!firstInvalidField) firstInvalidField = document.getElementById('field-email');
+    if (!firstInvalidField) firstInvalidField = emailField;
   }
 
-  // إذا كانت البيانات كلها صحيحة، يتم إرسال النموذج بنجاح
+  // النتيجة النهائية:
   if (isValid) {
-    alert("تم ملء البيانات الإلزامية بنجاح، جاري إرسال الطلب!");
-    // هنا تضع كود الإرسال الفعلي الخاص بك، مثل:
-    // this.submit();
+    // إذا كانت الحقول الثلاثة ممتلئة بشكل صحيح، يتم تمرير الإرسال هنا بأمان وبدون رسائل تنبيهية مزعجة
+    this.submit(); 
   } else {
-    // إرجاع الشاشة تلقائياً (Scroll) لأول حقل غير مكتمل ليقوم العميل بتعديله فوراً
+    // إذا وجد حقل فارغ، نأخذ العميل إليه فوراً
     firstInvalidField.focus();
     firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 });
-</script>
+              </script>
         
-
 
 
             
