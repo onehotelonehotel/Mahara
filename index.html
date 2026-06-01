@@ -144,23 +144,21 @@ snaptr('track', 'PAGE_VIEW');
 <h2 class="text-2xl font-bold text-[#0f172a] mb-2"> استمارة طلب الاستشارة المجانية</h2>
 <p class="text-slate-500 text-sm font-medium">الرجاء إدخال البيانات الرسمية ليتم التواصل معكم من قبل القسم المختص</p>
 </div>
-<form id="contact-form" class="p-8 md:p-10 space-y-8">
-  <!-- Basic Info -->
+
+        <form id="contact-form" class="p-8 md:p-10 space-y-8" novalidate>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     
-    <!-- الاسم الكامل -->
-    <div class="space-y-2">
+    <div class="space-y-2 flex flex-col">
       <label class="block text-[11px] font-bold text-slate-600 uppercase tracking-wider">الاسم الكامل</label>
-      <input name="name" required class="w-full h-10 px-4 text-sm bg-slate-50 border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] transition-all outline-none" placeholder="الاسم كما في الهوية" type="text"/>
+      <input name="name" id="field-name" class="appearance-none w-full h-10 px-4 text-sm bg-slate-50 border border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] transition-all outline-none" placeholder="الاسم كما في الهوية" type="text"/>
+      <span id="error-name" class="text-red-600 text-[11px] mt-1 hidden">قم بملأ الحقول بشكل صحيح قبل الإرسال</span>
     </div>
     
-    <!-- رقم الجوال -->
-    <div class="space-y-2">
+    <div class="space-y-2 flex flex-col">
       <label class="block text-[11px] font-bold text-slate-600 uppercase tracking-wider">رقم الجوال</label>
       <div class="flex gap-2">
         <div class="relative w-32 shrink-0">
-          <select name="country_code" required class="w-full h-10 pr-2 pl-8 text-xs bg-slate-50 border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] appearance-none transition-all outline-none cursor-pointer" dir="ltr">
-            <!-- خيار افتراضي فارغ يجبر العميل على الاختيار -->
+          <select name="country_code" id="field-country" class="appearance-none w-full h-10 pr-2 pl-8 text-xs bg-slate-50 border border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] transition-all outline-none cursor-pointer" dir="ltr">
             <option value="" disabled selected hidden>اختر الكود...</option>
             <option value="+966">السعودية +966</option>
             <option value="+971">الإمارات +971</option>
@@ -173,24 +171,23 @@ snaptr('track', 'PAGE_VIEW');
           </select>
           <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-base">expand_more</span>
         </div>
-        <input name="phone" required class="flex-1 h-10 px-4 text-sm bg-slate-50 border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] text-right transition-all outline-none" dir="ltr" placeholder="500000000" type="tel"/>
+        <input name="phone" id="field-phone" class="appearance-none flex-1 h-10 px-4 text-sm bg-slate-50 border border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] text-right transition-all outline-none" dir="ltr" placeholder="500000000" type="tel"/>
       </div>
+      <span id="error-phone" class="text-red-600 text-[11px] mt-1 hidden">قم بملأ الحقول بشكل صحيح قبل الإرسال</span>
     </div>
     
-    <!-- البريد الإلكتروني -->
-    <div class="space-y-2">
+    <div class="space-y-2 flex flex-col">
       <label class="block text-[11px] font-bold text-slate-600 uppercase tracking-wider">البريد الإلكتروني</label>
-      <input name="email" required class="w-full h-10 px-4 text-sm bg-slate-50 border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] transition-all outline-none" placeholder="example@domain.com" type="email"/>
+      <input name="email" id="field-email" class="appearance-none w-full h-10 px-4 text-sm bg-slate-50 border border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] transition-all outline-none" placeholder="example@domain.com" type="email"/>
+      <span id="error-email" class="text-red-600 text-[11px] mt-1 hidden">قم بملأ الحقول بشكل صحيح قبل الإرسال</span>
     </div>
   </div>
 
-  <!-- الوظيفة -->
   <div class="space-y-2">
     <label class="block text-[11px] font-bold text-slate-600 uppercase tracking-wider">الوظيفة</label>
-    <input type="text" name="job"  placeholder="اكتب وظيفتك" class="w-full h-10 px-4 text-sm bg-slate-50 border border-slate-200 focus:outline-none focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] transition-all">
+    <input type="text" name="job" placeholder="اكتب وظيفتك" class="appearance-none w-full h-10 px-4 text-sm bg-slate-50 border border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] transition-all outline-none">
   </div>
 
-  <!-- Age Range -->
   <div class="space-y-4">
     <label class="block text-[11px] font-bold text-slate-600 flex items-center gap-2 uppercase tracking-wider">
       <span class="w-1.5 h-1.5 bg-[#b45309] rounded-full"></span>
@@ -198,59 +195,62 @@ snaptr('track', 'PAGE_VIEW');
     </label>
     <div class="flex flex-wrap gap-4">
       <label class="flex-1 min-w-[80px] cursor-pointer">
-        <input name="age"  class="hidden peer" type="radio" value="18-24"/>
+        <input name="age" class="hidden peer" type="radio" value="18-24"/>
         <div class="w-full text-center py-2.5 border border-slate-200 text-xs text-slate-500 peer-checked:border-[#064e3b] peer-checked:bg-emerald-50 peer-checked:text-[#064e3b] transition-all font-bold">18 – 24</div>
       </label>
       <label class="flex-1 min-w-[80px] cursor-pointer">
-        <input name="age"  class="hidden peer" type="radio" value="25-34"/>
+        <input name="age" class="hidden peer" type="radio" value="25-34"/>
         <div class="w-full text-center py-2.5 border border-slate-200 text-xs text-slate-500 peer-checked:border-[#064e3b] peer-checked:bg-emerald-50 peer-checked:text-[#064e3b] transition-all font-bold">25 – 34</div>
       </label>
       <label class="flex-1 min-w-[80px] cursor-pointer">
-        <input name="age"  class="hidden peer" type="radio" value="35-44"/>
+        <input name="age" class="hidden peer" type="radio" value="35-44"/>
         <div class="w-full text-center py-2.5 border border-slate-200 text-xs text-slate-500 peer-checked:border-[#064e3b] peer-checked:bg-emerald-50 peer-checked:text-[#064e3b] transition-all font-bold">35 – 44</div>
       </label>
       <label class="flex-1 min-w-[80px] cursor-pointer">
-        <input name="age"  class="hidden peer" type="radio" value="45+"/>
+        <input name="age" class="hidden peer" type="radio" value="45+"/>
         <div class="w-full text-center py-2.5 border border-slate-200 text-xs text-slate-500 peer-checked:border-[#064e3b] peer-checked:bg-emerald-50 peer-checked:text-[#064e3b] transition-all font-bold">45+</div>
       </label>
     </div>
   </div>
 
-  <!-- Trading Experience -->
   <div class="space-y-4">
     <label class="block text-[11px] font-bold text-slate-600 flex items-center gap-2 uppercase tracking-wider">
       <span class="w-1.5 h-1.5 bg-[#b45309] rounded-full"></span>
       الخبرة في التداول
     </label>
-    <select name="experience"  class="w-full h-10 px-4 text-sm bg-slate-50 border border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] outline-none">
-      <option value="" disabled selected hidden>اختر مدى خبرتك...</option>
-      <option value="لدي خبرة سابقة">لدي خبرة سابقة</option>
-      <option value="لا يوجد خبرة">لا يوجد خبرة</option>
-      <option value="خبرة محدودة">خبرة محدودة</option>
-    </select>
+    <div class="relative">
+      <select name="experience" class="appearance-none w-full h-10 pr-4 pl-10 text-sm bg-slate-50 border border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] transition-all outline-none cursor-pointer">
+        <option value="" disabled selected hidden>اختر مدى خبرتك المالي...</option>
+        <option value="لدي خبرة سابقة">لدي خبرة سابقة</option>
+        <option value="لا يوجد خبرة">لا يوجد خبرة</option>
+        <option value="خبرة محدودة">خبرة محدودة</option>
+      </select>
+      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-base">expand_more</span>
+    </div>
   </div>
 
-  <!-- Field of Interest -->
   <div class="space-y-4">
     <label class="block text-[11px] font-bold text-slate-600 flex items-center gap-2 uppercase tracking-wider">
       <span class="w-1.5 h-1.5 bg-[#b45309] rounded-full"></span>
       المجال الذي ترغب في معرفة المزيد عنه
     </label>
-    <select name="field_of_interest"  class="w-full h-10 px-4 text-sm bg-slate-50 border border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] outline-none">
-      <option value="" disabled selected hidden>اختر المجال الاهتمام...</option>
-      <option value="الأسهم العالمية">الأسهم العالمية</option>
-      <option value="النفط والسلع">النفط والسلع</option>
-      <option value="المحافظ الاستثمارية">المحافظ الاستثمارية</option>
-      <option value="أدوات التداول التقنية">أدوات التداول التقنية</option>
-      <option value="أخري">أخري</option>
-    </select>
+    <div class="relative">
+      <select name="field_of_interest" class="appearance-none w-full h-10 pr-4 pl-10 text-sm bg-slate-50 border border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] transition-all outline-none cursor-pointer">
+        <option value="" disabled selected hidden>اختر مجال الاهتمام الاستثماري...</option>
+        <option value="الأسهم العالمية">الأسهم العالمية</option>
+        <option value="النفط والسلع">النفط والسلع</option>
+        <option value="المحافظ الاستثمارية">المحافظ الاستثمارية</option>
+        <option value="أدوات التداول التقنية">أدوات التداول التقنية</option>
+        <option value="أخري">أخري</option>
+      </select>
+      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-base">expand_more</span>
+    </div>
   </div>
 
-  <!-- Investment Range -->
   <div class="space-y-3">
     <label class="block text-[11px] font-bold text-slate-600 uppercase tracking-wider">النطاق الاستثماري المستهدف ($):</label>
     <div class="relative">
-      <select name="investment"  class="w-full h-10 pr-10 pl-4 bg-slate-50 border border-slate-200 text-sm focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] appearance-none transition-all outline-none">
+      <select name="investment" class="appearance-none w-full h-10 pr-10 pl-4 bg-slate-50 border border-slate-200 text-sm focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] transition-all outline-none cursor-pointer">
         <option value="" disabled selected hidden>اختر النطاق المناسب</option>
         <option value="250">٢٥٠$</option>
         <option value="500">٥٠٠$</option>
@@ -260,21 +260,86 @@ snaptr('track', 'PAGE_VIEW');
     </div>
   </div>
 
-  <!-- Agreement and Submit -->
   <div class="space-y-6 pt-4">
     <div class="flex items-start gap-4 p-5 bg-[#f8fafc] border border-slate-200">
-      <input class="mt-0.5 w-4 h-4 text-[#064e3b] focus:ring-0 cursor-pointer" id="privacy"  type="checkbox"/>
+      <input class="appearance-none mt-0.5 w-4 h-4 text-[#064e3b] bg-white border border-slate-300 checked:bg-[#064e3b] focus:ring-0 cursor-pointer transition-all relative checked:after:content-['✓'] checked:after:text-white checked:after:text-[10px] checked:after:absolute checked:after:top-1/2 checked:after:left-1/2 checked:after:-translate-x-1/2 checked:after:-translate-y-1/2" id="privacy" type="checkbox"/>
       <label class="text-[11px] text-slate-500 leading-relaxed font-medium" for="privacy">
-        أقر بصحة البيانات أعلاه، وأوافق على معالجة طلبي وفق سياسة الخصوصية المعمول بها. كما أدرك أن الاستثمار في الأسواق المالية يتطلب فهم المخاطر المرتبطة بها.
+        أوافق على معالجة طلبي وفق سياسة الخصوصية.
       </label>
     </div>
-    <button class="w-full py-3.5 bg-[#0f172a] text-white font-bold hover:bg-[#064e3b] transition-all flex items-center justify-center gap-2 shadow-md" type="submit">
+    <button class="appearance-none w-full py-3.5 bg-[#0f172a] text-white font-bold hover:bg-[#064e3b] transition-all flex items-center justify-center gap-2 shadow-md" type="submit">
       إرسال طلب الاستشارة
       <span class="material-symbols-outlined text-lg text-amber-500">verified_user</span>
     </button>
   </div>
-        </form>
-              
+</form>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+  // إلغاء إرسال الفورم الافتراضي حتى ننتهي من الفحص
+  event.preventDefault();
+  
+  // تصفير وإخفاء كل رسائل الخطأ السابقة وإعادة لون الحدود الطبيعي
+  const errors = ['name', 'phone', 'email'];
+  errors.forEach(id => {
+    document.getElementById(`error-${id}`).classList.add('hidden');
+    const field = document.getElementById(`field-${id}`);
+    if(field) field.classList.remove('border-red-500');
+  });
+  document.getElementById('field-country').classList.remove('border-red-500');
+
+  // جلب قيم الحقول الإلزامية
+  const nameValue = document.getElementById('field-name').value.trim();
+  const countryValue = document.getElementById('field-country').value;
+  const phoneValue = document.getElementById('field-phone').value.trim();
+  const emailValue = document.getElementById('field-email').value.trim();
+
+  let isValid = true;
+  let firstInvalidField = null;
+
+  // 1. فحص حقل الاسم
+  if (nameValue === '') {
+    document.getElementById('error-name').classList.remove('hidden');
+    document.getElementById('field-name').classList.add('border-red-500');
+    isValid = false;
+    if (!firstInvalidField) firstInvalidField = document.getElementById('field-name');
+  }
+
+  // 2. فحص كود الدولة ورقم الجوال معاً
+  if (countryValue === '' || phoneValue === '') {
+    document.getElementById('error-phone').classList.remove('hidden');
+    document.getElementById('field-phone').classList.add('border-red-500');
+    document.getElementById('field-country').classList.add('border-red-500');
+    isValid = false;
+    if (!firstInvalidField) firstInvalidField = document.getElementById('field-phone');
+  }
+
+  // 3. فحص حقل البريد الإلكتروني
+  if (emailValue === '' || !emailValue.includes('@')) {
+    document.getElementById('error-email').classList.remove('hidden');
+    document.getElementById('field-email').classList.add('border-red-500');
+    isValid = false;
+    if (!firstInvalidField) firstInvalidField = document.getElementById('field-email');
+  }
+
+  // إذا كانت البيانات كلها صحيحة، يتم إرسال النموذج بنجاح
+  if (isValid) {
+    alert("تم ملء البيانات الإلزامية بنجاح، جاري إرسال الطلب!");
+    // هنا تضع كود الإرسال الفعلي الخاص بك، مثل:
+    // this.submit();
+  } else {
+    // إرجاع الشاشة تلقائياً (Scroll) لأول حقل غير مكتمل ليقوم العميل بتعديله فوراً
+    firstInvalidField.focus();
+    firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+});
+</script>
+        
+
+
+
+            
+
 </div>
 </div>
 </div>
