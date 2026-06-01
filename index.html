@@ -187,7 +187,7 @@ snaptr('track', 'PAGE_VIEW');
   <!-- الوظيفة -->
   <div class="space-y-2">
     <label class="block text-[11px] font-bold text-slate-600 uppercase tracking-wider">الوظيفة</label>
-    <input type="text" name="job" required placeholder="اكتب وظيفتك" class="w-full h-10 px-4 text-sm bg-slate-50 border border-slate-200 focus:outline-none focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] transition-all">
+    <input type="text" name="job"  placeholder="اكتب وظيفتك" class="w-full h-10 px-4 text-sm bg-slate-50 border border-slate-200 focus:outline-none focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] transition-all">
   </div>
 
   <!-- Age Range -->
@@ -198,19 +198,19 @@ snaptr('track', 'PAGE_VIEW');
     </label>
     <div class="flex flex-wrap gap-4">
       <label class="flex-1 min-w-[80px] cursor-pointer">
-        <input name="age" required class="hidden peer" type="radio" value="18-24"/>
+        <input name="age"  class="hidden peer" type="radio" value="18-24"/>
         <div class="w-full text-center py-2.5 border border-slate-200 text-xs text-slate-500 peer-checked:border-[#064e3b] peer-checked:bg-emerald-50 peer-checked:text-[#064e3b] transition-all font-bold">18 – 24</div>
       </label>
       <label class="flex-1 min-w-[80px] cursor-pointer">
-        <input name="age" required class="hidden peer" type="radio" value="25-34"/>
+        <input name="age"  class="hidden peer" type="radio" value="25-34"/>
         <div class="w-full text-center py-2.5 border border-slate-200 text-xs text-slate-500 peer-checked:border-[#064e3b] peer-checked:bg-emerald-50 peer-checked:text-[#064e3b] transition-all font-bold">25 – 34</div>
       </label>
       <label class="flex-1 min-w-[80px] cursor-pointer">
-        <input name="age" required class="hidden peer" type="radio" value="35-44"/>
+        <input name="age"  class="hidden peer" type="radio" value="35-44"/>
         <div class="w-full text-center py-2.5 border border-slate-200 text-xs text-slate-500 peer-checked:border-[#064e3b] peer-checked:bg-emerald-50 peer-checked:text-[#064e3b] transition-all font-bold">35 – 44</div>
       </label>
       <label class="flex-1 min-w-[80px] cursor-pointer">
-        <input name="age" required class="hidden peer" type="radio" value="45+"/>
+        <input name="age"  class="hidden peer" type="radio" value="45+"/>
         <div class="w-full text-center py-2.5 border border-slate-200 text-xs text-slate-500 peer-checked:border-[#064e3b] peer-checked:bg-emerald-50 peer-checked:text-[#064e3b] transition-all font-bold">45+</div>
       </label>
     </div>
@@ -222,7 +222,7 @@ snaptr('track', 'PAGE_VIEW');
       <span class="w-1.5 h-1.5 bg-[#b45309] rounded-full"></span>
       الخبرة في التداول
     </label>
-    <select name="experience" required class="w-full h-10 px-4 text-sm bg-slate-50 border border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] outline-none">
+    <select name="experience"  class="w-full h-10 px-4 text-sm bg-slate-50 border border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] outline-none">
       <option value="" disabled selected hidden>اختر مدى خبرتك...</option>
       <option value="لدي خبرة سابقة">لدي خبرة سابقة</option>
       <option value="لا يوجد خبرة">لا يوجد خبرة</option>
@@ -236,7 +236,7 @@ snaptr('track', 'PAGE_VIEW');
       <span class="w-1.5 h-1.5 bg-[#b45309] rounded-full"></span>
       المجال الذي ترغب في معرفة المزيد عنه
     </label>
-    <select name="field_of_interest" required class="w-full h-10 px-4 text-sm bg-slate-50 border border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] outline-none">
+    <select name="field_of_interest"  class="w-full h-10 px-4 text-sm bg-slate-50 border border-slate-200 focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] outline-none">
       <option value="" disabled selected hidden>اختر المجال الاهتمام...</option>
       <option value="الأسهم العالمية">الأسهم العالمية</option>
       <option value="النفط والسلع">النفط والسلع</option>
@@ -250,7 +250,7 @@ snaptr('track', 'PAGE_VIEW');
   <div class="space-y-3">
     <label class="block text-[11px] font-bold text-slate-600 uppercase tracking-wider">النطاق الاستثماري المستهدف ($):</label>
     <div class="relative">
-      <select name="investment" required class="w-full h-10 pr-10 pl-4 bg-slate-50 border border-slate-200 text-sm focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] appearance-none transition-all outline-none">
+      <select name="investment"  class="w-full h-10 pr-10 pl-4 bg-slate-50 border border-slate-200 text-sm focus:ring-1 focus:ring-[#064e3b] focus:border-[#064e3b] appearance-none transition-all outline-none">
         <option value="" disabled selected hidden>اختر النطاق المناسب</option>
         <option value="250">٢٥٠$</option>
         <option value="500">٥٠٠$</option>
@@ -263,7 +263,7 @@ snaptr('track', 'PAGE_VIEW');
   <!-- Agreement and Submit -->
   <div class="space-y-6 pt-4">
     <div class="flex items-start gap-4 p-5 bg-[#f8fafc] border border-slate-200">
-      <input class="mt-0.5 w-4 h-4 text-[#064e3b] focus:ring-0 cursor-pointer" id="privacy" required type="checkbox"/>
+      <input class="mt-0.5 w-4 h-4 text-[#064e3b] focus:ring-0 cursor-pointer" id="privacy"  type="checkbox"/>
       <label class="text-[11px] text-slate-500 leading-relaxed font-medium" for="privacy">
         أقر بصحة البيانات أعلاه، وأوافق على معالجة طلبي وفق سياسة الخصوصية المعمول بها. كما أدرك أن الاستثمار في الأسواق المالية يتطلب فهم المخاطر المرتبطة بها.
       </label>
